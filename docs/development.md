@@ -6,7 +6,7 @@ In case you want to build the Airflow Operator from the source code, e.g., to te
 ```bash
 $ mkdir -p $GOPATH/src/k8s.io
 $ cd $GOPATH/src/k8s.io
-$ git clone git@github.com:GoogleCloudPlatform/airflow-operator.git
+$ git clone git@github.com:apache/airflow-on-k8s-operator.git
 ```
 
 ## Building and running locally:
