@@ -26,10 +26,10 @@ package airflowbase
 
 import (
 	"encoding/base64"
-	app "github.com/kubernetes-sigs/application/pkg/apis/app/v1beta1"
 	alpha1 "github.com/apache/airflow-on-k8s-operator/pkg/apis/airflow/v1alpha1"
 	"github.com/apache/airflow-on-k8s-operator/pkg/controller/application"
 	"github.com/apache/airflow-on-k8s-operator/pkg/controller/common"
+	app "github.com/kubernetes-sigs/application/pkg/apis/app/v1beta1"
 	appsv1 "k8s.io/api/apps/v1"
 	corev1 "k8s.io/api/core/v1"
 	policyv1 "k8s.io/api/policy/v1beta1"
