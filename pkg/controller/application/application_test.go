@@ -19,7 +19,7 @@ import (
 	app "github.com/kubernetes-sigs/application/pkg/apis/app/v1beta1"
 	. "github.com/onsi/ginkgo"
 	. "github.com/onsi/gomega"
-	"k8s.io/airflow-operator/pkg/controller/application"
+	"github.com/apache/airflow-on-k8s-operator/pkg/controller/application"
 	appsv1 "k8s.io/api/apps/v1"
 	corev1 "k8s.io/api/core/v1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"

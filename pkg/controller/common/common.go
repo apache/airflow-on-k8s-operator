@@ -18,7 +18,7 @@ package common
 import (
 	"bytes"
 	"fmt"
-	alpha1 "k8s.io/airflow-operator/pkg/apis/airflow/v1alpha1"
+	alpha1 "github.com/apache/airflow-on-k8s-operator/pkg/apis/airflow/v1alpha1"
 	corev1 "k8s.io/api/core/v1"
 	"math/rand"
 	"sigs.k8s.io/controller-reconciler/pkg/reconciler"
