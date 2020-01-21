@@ -41,3 +41,7 @@ Checkout out the [Design](docs/design.md)
 ## Development
 
 Refer to the [Design](docs/design.md) and [Development Guide](docs/development.md).
+
+## History
+This repo has been donated to Apache foundation.
+It was originally developed here at [GoogleCloud repo](https://github.com/GoogleCloudPlatform/airflow-operator)
