@@ -13,20 +13,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-// Generate deepcopy for apis
-// +k8s:deepcopy-gen=true
-
-// Package apis contains Kubernetes API groups.
-package apis
+package patch
 
 import (
 	"k8s.io/apimachinery/pkg/runtime"
 )
 
-// AddToSchemes may be used to add all resources defined in the project to a Scheme
-var AddToSchemes runtime.SchemeBuilder
-
-// AddToScheme adds all Resources to the Scheme
-func AddToScheme(s *runtime.Scheme) error {
-	return AddToSchemes.AddToScheme(s)
-}
+// Scheme is the default instance of runtime.Scheme to which types in the Kubernetes API are already registered.
+var Scheme = runtime.NewScheme()

@@ -66,9 +66,8 @@ var _ = Describe("Reconciler", func() {
 		})
 		It("should able to List Service", func() {
 			By("Listing service")
-			opts := client.ListOptions{}
-			opts.Raw = &metav1.ListOptions{TypeMeta: metav1.TypeMeta{Kind: "Service", APIVersion: "v1"}}
-			err := cl.List(context.TODO(), &opts, &corev1.ServiceList{})
+			opts := client.ListOptions{Raw: &metav1.ListOptions{TypeMeta: metav1.TypeMeta{Kind: "Service", APIVersion: "v1"}}}
+			err := cl.List(context.TODO(), &corev1.ServiceList{}, &opts)
 			Expect(err).To(BeNil())
 		})
 		It("should not be able to Reconcile missing custom resource", func() {
