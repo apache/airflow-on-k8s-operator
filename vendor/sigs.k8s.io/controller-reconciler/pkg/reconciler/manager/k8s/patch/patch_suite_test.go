@@ -13,20 +13,28 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-// Generate deepcopy for apis
-// +k8s:deepcopy-gen=true
-
-// Package apis contains Kubernetes API groups.
-package apis
+package patch_test
 
 import (
-	"k8s.io/apimachinery/pkg/runtime"
+	"testing"
+
+	. "github.com/onsi/ginkgo"
+	. "github.com/onsi/gomega"
+	"sigs.k8s.io/controller-runtime/pkg/envtest"
 )
 
-// AddToSchemes may be used to add all resources defined in the project to a Scheme
-var AddToSchemes runtime.SchemeBuilder
-
-// AddToScheme adds all Resources to the Scheme
-func AddToScheme(s *runtime.Scheme) error {
-	return AddToSchemes.AddToScheme(s)
+func TestSource(t *testing.T) {
+	RegisterFailHandler(Fail)
+	RunSpecsWithDefaultAndCustomReporters(t, "Patch Suite", []Reporter{envtest.NewlineReporter{}})
 }
+
+var testenv *envtest.Environment
+
+var _ = BeforeSuite(func(done Done) {
+	testenv = &envtest.Environment{}
+	close(done)
+}, 60)
+
+var _ = AfterSuite(func() {
+	testenv.Stop()
+})

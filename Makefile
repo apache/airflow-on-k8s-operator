@@ -5,6 +5,14 @@ ifndef NOTGCP
   IMG ?= gcr.io/${PROJECT_ID}/airflow-operator:${SHORT_SHA}
 endif
 
+
+# Get the currently used golang install path (in GOPATH/bin, unless GOBIN is set)
+ifeq (,$(shell go env GOBIN))
+GOBIN=$(shell go env GOPATH)/bin
+else
+GOBIN=$(shell go env GOBIN)
+endif
+
 # Image URL to use all building/pushing image targets
 
 all: test manager
@@ -43,8 +51,9 @@ undeploy: manifests
 	kubectl delete -f hack/appcrd.yaml || true
 
 # Generate manifests e.g. CRD, RBAC etc.
-manifests:
-	go run vendor/sigs.k8s.io/controller-tools/cmd/controller-gen/main.go all
+# TODO $(CONTROLLER_GEN) $(CRD_OPTIONS) rbac:roleName=manager-role webhook paths="./pkg/..." output:crd:artifacts:config=config/crd/bases
+manifests: controller-gen
+	$(CONTROLLER_GEN) $(CRD_OPTIONS) rbac:roleName=manager-role webhook paths="./pkg/..." output:artifacts:config=config/crd/bases
 
 # Run go fmt against code
 fmt:
@@ -55,9 +64,8 @@ vet:
 	go vet ./pkg/... ./cmd/...
 
 # Generate code
-generate:
-	echo ${IMG}
-	go generate ./pkg/... ./cmd/...
+generate: controller-gen
+	$(CONTROLLER_GEN) object:headerFile=./hack/boilerplate.go.txt paths="./pkg/..."
 
 # Build the docker image
 docker-build: test
@@ -79,3 +87,21 @@ e2e-test-gcp:
 	kubectl get namespace airflowop-system || kubectl create namespace airflowop-system
 	kubectl apply -f hack/sample/cloudsql-celery/sqlproxy-secret.yaml -n airflowop-system
 	go test -v -timeout 20m test/e2e/gcp_test.go --namespace airflowop-system
+
+
+# find or download controller-gen
+# download controller-gen if necessary
+controller-gen:
+ifeq (, $(shell which controller-gen))
+	@{ \
+	set -e ;\
+	CONTROLLER_GEN_TMP_DIR=$$(mktemp -d) ;\
+	cd $$CONTROLLER_GEN_TMP_DIR ;\
+	go mod init tmp ;\
+	go get sigs.k8s.io/controller-tools/cmd/controller-gen@v0.2.4 ;\
+	rm -rf $$CONTROLLER_GEN_TMP_DIR ;\
+	}
+CONTROLLER_GEN=$(GOBIN)/controller-gen
+else
+CONTROLLER_GEN=$(shell which controller-gen)
+endif
