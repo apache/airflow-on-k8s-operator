@@ -37,8 +37,8 @@
 [[projects]]
   name = "github.com/go-logr/zapr"
   packages = ["."]
-  revision = "7536572e8d55209135cd5e7ccf7fce43dca217ab"
-  version = "v0.1.0"
+  revision = "03f06a783fbb7dfaf3f629c7825480e43a7105e6"
+  version = "v0.1.1"
 
 [[projects]]
   name = "github.com/gobuffalo/envy"
@@ -160,6 +160,18 @@
   packages = ["."]
   revision = "1624edc4454b8682399def8740d46db5e4362ba4"
   version = "v1.1.5"
+
+[[projects]]
+  name = "github.com/kubernetes-sigs/application"
+  packages = [
+    "pkg/apis/app/v1beta1",
+    "pkg/component",
+    "pkg/customresource",
+    "pkg/finalizer",
+    "pkg/resource"
+  ]
+  revision = "6100ce945b3b4fdf8c8d491e8d374b0838bc4264"
+  version = "v0.8.1"
 
 [[projects]]
   name = "github.com/markbates/inflect"
@@ -723,6 +735,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "110057b07c88ee606b2dae02760372c144c81a60489bc0e39179503d8cff8505"
+  inputs-digest = "881b0e29573bebf2ec43a6934511a95113064330333fb971523eb2917b60e17a"
   solver-name = "gps-cdcl"
   solver-version = 1

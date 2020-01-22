@@ -22,8 +22,8 @@ import (
 	"sync"
 	"testing"
 
+	"github.com/apache/airflow-on-k8s-operator/pkg/apis"
 	"github.com/onsi/gomega"
-	"k8s.io/airflow-operator/pkg/apis"
 	"k8s.io/client-go/kubernetes/scheme"
 	"k8s.io/client-go/rest"
 	"sigs.k8s.io/controller-runtime/pkg/envtest"

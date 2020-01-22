@@ -16,7 +16,7 @@
 package apis
 
 import (
-	"k8s.io/airflow-operator/pkg/apis/airflow/v1alpha1"
+	"github.com/apache/airflow-on-k8s-operator/pkg/apis/airflow/v1alpha1"
 )
 
 func init() {

@@ -18,9 +18,9 @@ package main
 import (
 	"os"
 
-	"k8s.io/airflow-operator/pkg/apis"
-	"k8s.io/airflow-operator/pkg/controller"
-	"k8s.io/airflow-operator/pkg/webhook"
+	"github.com/apache/airflow-on-k8s-operator/pkg/apis"
+	"github.com/apache/airflow-on-k8s-operator/pkg/controller"
+	"github.com/apache/airflow-on-k8s-operator/pkg/webhook"
 	_ "k8s.io/client-go/plugin/pkg/client/auth/gcp"
 	"sigs.k8s.io/controller-runtime/pkg/client/config"
 	"sigs.k8s.io/controller-runtime/pkg/manager"

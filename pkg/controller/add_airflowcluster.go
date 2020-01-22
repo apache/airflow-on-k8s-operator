@@ -16,7 +16,7 @@
 package controller
 
 import (
-	"k8s.io/airflow-operator/pkg/controller/airflowcluster"
+	"github.com/apache/airflow-on-k8s-operator/pkg/controller/airflowcluster"
 )
 
 func init() {

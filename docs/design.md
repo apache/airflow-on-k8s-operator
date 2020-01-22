@@ -18,7 +18,7 @@ The goal is to ensure that Kubernetes works well as a substrate for deploying Ai
 The Airflow operator API is implemented by extending the k8s API with Custom Resources Definitions (CRDs) that declaratively describes the intent. Custom resources are serializable as json and are stored in the API Server. The Airflow controller watches these Custom Resources and take actions to move the Airflow cluster to the desired state. All CRDs inherit the contents of ObjectMeta and TypeMeta that are common to k8s resources. 
 To improve cluster utilization and provide multiple users (in same trust domain) with some isolation, we are splitting the Airflow components into `AirflowBase` (common) and `AirflowCluster` (per user). `AirflowBase` includes MySQL, UI, NFS(DagStore). `AirflowCluster` includes Airflow Scheduler, Workers, Redis. This allows use cases where different users use different airflow plugins (opeartors, packages etc) in their setup.
 
-The [API Design](https://github.com/GoogleCloudPlatform/airflow-operator/blob/master/docs/api.md) details the `AirflowBase` and `AirflowCluster` Custom Resource fields.
+The [API Design](https://github.com/apache/airflow-on-k8s-operator/blob/master/docs/api.md) details the `AirflowBase` and `AirflowCluster` Custom Resource fields.
 
 # Airflow Operator Custom Controllers
 

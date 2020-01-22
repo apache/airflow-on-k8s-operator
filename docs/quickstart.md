@@ -4,7 +4,7 @@
 [One Click Deployment](https://pantheon.corp.google.com/marketplace/details/google/airflow-operator) from Google Cloud Marketplace to your [GKE cluster](https://cloud.google.com/kubernetes-engine/). The marketplace may not have the latest version of the operator. If you need to deploy from latest master continue reading.
 
 ## Running from source
-Refer to the [Development Guide](https://github.com/GoogleCloudPlatform/airflow-operator/blob/master/docs/development.md).
+Refer to the [Development Guide](https://github.com/apache/airflow-on-k8s-operator/blob/master/docs/development.md).
 
 ## Installing on any cluster
 Ensure kubeconfig points to your cluster.
@@ -120,4 +120,4 @@ $ kubectl get airflowcluster/cc-cluster -o yaml
 
 ## Next steps
 
-For more information check the [Design](https://github.com/GoogleCloudPlatform/airflow-operator/blob/master/docs/design.md) and detailed [User Guide](https://github.com/GoogleCloudPlatform/airflow-operator/blob/master/docs/userguide.md) to create your own cluster specs.
+For more information check the [Design](https://github.com/apache/airflow-on-k8s-operator/blob/master/docs/design.md) and detailed [User Guide](https://github.com/apache/airflow-on-k8s-operator/blob/master/docs/userguide.md) to create your own cluster specs.
