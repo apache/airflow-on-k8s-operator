@@ -1,0 +1,10 @@
+domain: apache.org
+repo: github.com/apache/airflow-on-k8s-operator
+resources:
+- group: airflow
+  kind: AirflowBase
+  version: v1alpha1
+- group: airflow
+  kind: AirflowCluster
+  version: v1alpha1
+version: "2"

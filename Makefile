@@ -14,22 +14,23 @@ GOBIN=$(shell go env GOBIN)
 endif
 
 # Image URL to use all building/pushing image targets
+IMG ?= controller:latest
+# Produce CRDs that work back to Kubernetes 1.11 (no version conversion)
+CRD_OPTIONS ?= "crd:trivialVersions=true"
 
 all: test manager
 
 # Run tests
 test: generate fmt vet manifests
-	ln -s ../../../templates/ pkg/controller/airflowbase/ || true
-	ln -s ../../../templates/ pkg/controller/airflowcluster/ || true
-	go test ./pkg/... ./cmd/... -coverprofile cover.out
+	go test ./controllers/... -coverprofile cover.out
 
 # Build manager binary
 manager: generate fmt vet
-	go build -o bin/manager github.com/apache/airflow-on-k8s-operator/cmd/manager
+	go build -o bin/manager main.go
 
 # Run against the configured Kubernetes cluster in ~/.kube/config
-run: generate fmt vet
-	go run ./cmd/manager/main.go
+run: generate fmt vet manifests
+	go run ./main.go
 
 # Run against the configured Kubernetes cluster in ~/.kube/config
 debug: generate fmt vet
@@ -37,11 +38,16 @@ debug: generate fmt vet
 
 # Install CRDs into a cluster
 install: manifests
-	kubectl apply -f config/crds
+	kustomize build config/crd | kubectl apply -f -
 	kubectl apply -f hack/appcrd.yaml
 
+# Uninstall CRDs from a cluster
+uninstall: manifests
+	kustomize build config/crd | kubectl delete -f -
+
 # Deploy controller in the configured Kubernetes cluster in ~/.kube/config
-deploy: install
+deploy: manifests
+	cd config/manager && kustomize edit set image controller=${IMG}
 	kustomize build config/default | kubectl apply -f -
 
 # Deploy controller in the configured Kubernetes cluster in ~/.kube/config
@@ -51,27 +57,26 @@ undeploy: manifests
 	kubectl delete -f hack/appcrd.yaml || true
 
 # Generate manifests e.g. CRD, RBAC etc.
-# TODO $(CONTROLLER_GEN) $(CRD_OPTIONS) rbac:roleName=manager-role webhook paths="./pkg/..." output:crd:artifacts:config=config/crd/bases
 manifests: controller-gen
-	$(CONTROLLER_GEN) $(CRD_OPTIONS) rbac:roleName=manager-role webhook paths="./pkg/..." output:artifacts:config=config/crd/bases
+	$(CONTROLLER_GEN) $(CRD_OPTIONS) rbac:roleName=manager-role webhook paths="./..." output:crd:artifacts:config=config/crd/bases
 
 # Run go fmt against code
 fmt:
-	go fmt ./pkg/... ./cmd/...
+	go fmt ./...
 
 # Run go vet against code
 vet:
-	go vet ./pkg/... ./cmd/...
+	go vet ./...
 
 # Generate code
 generate: controller-gen
-	$(CONTROLLER_GEN) object:headerFile=./hack/boilerplate.go.txt paths="./pkg/..."
+	$(CONTROLLER_GEN) object:headerFile=./hack/boilerplate.go.txt paths="./..."
 
 # Build the docker image
 docker-build: test
 	docker build . -t ${IMG}
 	@echo "updating kustomize image patch file for manager resource"
-	sed -i'' -e 's@image: .*@image: '"${IMG}"'@' ./config/default/manager_image_patch.yaml
+	cd config/manager && kustomize edit set image controller=${IMG}
 
 # Push the docker image
 docker-push: docker-build
@@ -80,13 +85,13 @@ docker-push: docker-build
 
 e2e-test:
 	kubectl get namespace airflowop-system || kubectl create namespace airflowop-system
-	go test -v -timeout 20m test/e2e/base_test.go --namespace airflowop-system
-	go test -v -timeout 20m test/e2e/cluster_test.go --namespace airflowop-system
+	go test -v -timeout 20m test/e2e/base/base_test.go --namespace airflowop-system
+	go test -v -timeout 20m test/e2e/cluster/cluster_test.go --namespace airflowop-system
 
 e2e-test-gcp:
 	kubectl get namespace airflowop-system || kubectl create namespace airflowop-system
 	kubectl apply -f hack/sample/cloudsql-celery/sqlproxy-secret.yaml -n airflowop-system
-	go test -v -timeout 20m test/e2e/gcp_test.go --namespace airflowop-system
+	go test -v -timeout 20m test/e2e/gcp/gcp_test.go --namespace airflowop-system
 
 
 # find or download controller-gen

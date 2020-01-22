@@ -3,12 +3,11 @@ module github.com/apache/airflow-on-k8s-operator
 go 1.13
 
 require (
-	github.com/go-logr/zapr v0.1.1 // indirect
+	github.com/go-logr/logr v0.1.0
 	github.com/kr/pretty v0.2.0 // indirect
 	github.com/kubernetes-sigs/application v0.8.1
 	github.com/onsi/ginkgo v1.11.0
 	github.com/onsi/gomega v1.8.1
-	golang.org/x/net v0.0.0-20191004110552-13f9640d40b9
 	k8s.io/api v0.17.2
 	k8s.io/apimachinery v0.17.2
 	k8s.io/client-go v0.17.1
