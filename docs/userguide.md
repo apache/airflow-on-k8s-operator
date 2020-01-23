@@ -13,7 +13,7 @@ By default dags are refreshed every 5 minutes.
 To enable continuous sync, use git or gcs dag source with once disabled.
 
 ```yaml
-apiVersion: airflow.k8s.io/v1alpha1
+apiVersion: airflow.apache.org/v1alpha1
 kind: AirflowCluster
 ...
 spec:
