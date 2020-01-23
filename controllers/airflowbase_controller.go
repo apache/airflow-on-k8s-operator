@@ -69,6 +69,7 @@ func (r *AirflowBaseReconciler) Reconcile(req ctrl.Request) (ctrl.Result, error)
 
 // SetupWithManager - called by main
 func (r *AirflowBaseReconciler) SetupWithManager(mgr ctrl.Manager) error {
+	_ = app.AddToScheme(r.Scheme)
 	return ctrl.NewControllerManagedBy(mgr).
 		For(&alpha1.AirflowBase{}).
 		Complete(abReconciler(mgr))
@@ -86,7 +87,6 @@ func abReconciler(mgr manager.Manager) *gr.Reconciler {
 		WithErrorHandler(abHandleError).
 		WithValidator(validate).
 		WithDefaulter(applyDefaults).
-		RegisterSchemeBuilder(app.SchemeBuilder).
 		Build()
 }
 

@@ -33,7 +33,6 @@ import (
 	ctrl "sigs.k8s.io/controller-runtime"
 	"sigs.k8s.io/controller-runtime/pkg/manager"
 	"sigs.k8s.io/controller-runtime/pkg/reconcile"
-	"sigs.k8s.io/controller-runtime/pkg/runtime/scheme"
 	"time"
 )
 
@@ -396,20 +395,10 @@ func (gr *Reconciler) WithResourceManager(getter func() (string, rmanager.Manage
 	return gr
 }
 
-// AddToSchemes for adding Application to scheme
-var AddToSchemes runtime.SchemeBuilder
-
-// RegisterSchemeBuilder - create controller
-func (gr *Reconciler) RegisterSchemeBuilder(builder *scheme.Builder) *Reconciler {
-	AddToSchemes = append(AddToSchemes, builder.AddToScheme)
-	return gr
-}
-
 // Build - create controller
 func (gr *Reconciler) Build() *Reconciler {
 	km := k8s.NewRsrcManager(context.TODO(), gr.manager.GetClient(), gr.manager.GetScheme())
 	gr.rsrcMgr.Add(k8s.Type, km)
-	AddToSchemes.AddToScheme(gr.manager.GetScheme())
 	return gr
 }
 
