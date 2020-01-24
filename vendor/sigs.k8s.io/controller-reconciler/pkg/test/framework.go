@@ -66,10 +66,10 @@ func New(typename string) *Framework {
 	flag.Parse()
 
 	cfg, err := config.GetConfig()
-	g.Expect(err).NotTo(g.HaveOccurred(), "failed to initialize the Framework: %v", err)
+	g.Expect(err).NotTo(g.HaveOccurred(), "failed to get config: %v", err)
 
-	mgr, err := manager.New(cfg, manager.Options{})
-	g.Expect(err).NotTo(g.HaveOccurred(), "failed to initialize the Framework: %v", err)
+	mgr, err := manager.New(cfg, manager.Options{MetricsBindAddress: "0"})
+	g.Expect(err).NotTo(g.HaveOccurred(), "failed to create manager: %v", err)
 
 	err = apiextensionsv1beta1.AddToScheme(mgr.GetScheme())
 	g.Expect(err).NotTo(g.HaveOccurred(), "failed to initialize the Framework: %v", err)

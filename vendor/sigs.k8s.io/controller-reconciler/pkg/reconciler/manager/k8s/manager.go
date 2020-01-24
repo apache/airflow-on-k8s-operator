@@ -27,10 +27,10 @@ import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/runtime"
 	"k8s.io/apimachinery/pkg/runtime/schema"
+	serializer "k8s.io/apimachinery/pkg/runtime/serializer"
 	"k8s.io/apimachinery/pkg/types"
 	"k8s.io/apimachinery/pkg/util/validation/field"
 	"k8s.io/apimachinery/pkg/util/yaml"
-	"k8s.io/client-go/kubernetes/scheme"
 	"log"
 	"os"
 	"reflect"
@@ -46,11 +46,16 @@ const (
 	Type = "k8s"
 )
 
+// Codecs - Default Codec that is initlizated when manager is created
+// TODO - this becomes global. try make it part of manager context ?
+var Codecs serializer.CodecFactory
+
 // RsrcManager - complies with resource manager interface
 type RsrcManager struct {
 	name   string
 	client client.Client
 	scheme *runtime.Scheme
+	codecs serializer.CodecFactory
 }
 
 // FileResource - file, resource
@@ -71,7 +76,19 @@ func Getter(ctx context.Context, c client.Client, v *runtime.Scheme) func() (str
 // NewRsrcManager returns nil manager
 func NewRsrcManager(ctx context.Context, c client.Client, v *runtime.Scheme) *RsrcManager {
 	rm := &RsrcManager{}
-	rm.WithClient(c).WithName(Type + "Mgr").WithScheme(v)
+	rm.WithClient(c).WithName(Type + "Mgr").WithScheme(v).WithCodec(nil)
+	return rm
+}
+
+// WithCodec - inject or create codec
+func (rm *RsrcManager) WithCodec(codec *serializer.CodecFactory) *RsrcManager {
+	if codec != nil {
+		rm.codecs = *codec
+		Codecs = *codec
+	} else {
+		rm.codecs = serializer.NewCodecFactory(rm.scheme)
+		Codecs = rm.codecs
+	}
 	return rm
 }
 
@@ -199,7 +216,7 @@ func itemFromReader(name string, b *bufio.Reader, data interface{}, list metav1.
 		if err == nil {
 			err = tmpl.Execute(&exdoc, data)
 			if err == nil {
-				d := scheme.Codecs.UniversalDeserializer()
+				d := Codecs.UniversalDeserializer()
 				obj, _, e := d.Decode(exdoc.Bytes(), nil, nil)
 				err = e
 				if err == nil {

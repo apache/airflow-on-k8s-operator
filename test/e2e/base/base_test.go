@@ -27,7 +27,7 @@ import (
 
 const (
 	CRName    = "AirflowBase"
-	SampleDir = "../../hack/sample/"
+	SampleDir = "../../../hack/sample/"
 )
 
 var f *test.Framework

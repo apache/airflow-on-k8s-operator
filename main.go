@@ -18,6 +18,7 @@ package main
 import (
 	"flag"
 	"os"
+	"time"
 
 	airflowv1alpha1 "github.com/apache/airflow-on-k8s-operator/api/v1alpha1"
 	"github.com/apache/airflow-on-k8s-operator/controllers"
@@ -38,6 +39,7 @@ func init() {
 	_ = clientgoscheme.AddToScheme(scheme)
 
 	_ = airflowv1alpha1.AddToScheme(scheme)
+
 	// +kubebuilder:scaffold:scheme
 }
 
@@ -53,11 +55,14 @@ func main() {
 		o.Development = true
 	}))
 
+	syncperiod := time.Minute * 2
+
 	mgr, err := ctrl.NewManager(ctrl.GetConfigOrDie(), ctrl.Options{
 		Scheme:             scheme,
 		MetricsBindAddress: metricsAddr,
 		LeaderElection:     enableLeaderElection,
 		Port:               9443,
+		SyncPeriod:         &syncperiod,
 	})
 	if err != nil {
 		setupLog.Error(err, "unable to start manager")

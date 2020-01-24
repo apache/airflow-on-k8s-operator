@@ -90,6 +90,7 @@ func (r *AirflowClusterReconciler) Reconcile(req ctrl.Request) (ctrl.Result, err
 
 // SetupWithManager - called by main
 func (r *AirflowClusterReconciler) SetupWithManager(mgr ctrl.Manager) error {
+	_ = app.AddToScheme(r.Scheme)
 	return ctrl.NewControllerManagedBy(mgr).
 		For(&alpha1.AirflowCluster{}).
 		Complete(acReconciler(mgr))
@@ -110,7 +111,6 @@ func acReconciler(mgr manager.Manager) *gr.Reconciler {
 		WithErrorHandler(acHandleError).
 		WithValidator(acValidate).
 		WithDefaulter(acApplyDefaults).
-		RegisterSchemeBuilder(app.SchemeBuilder).
 		Build()
 }
 

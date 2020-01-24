@@ -27,7 +27,7 @@ import (
 
 const (
 	CRName    = "AirflowCluster"
-	SampleDir = "../../hack/sample/"
+	SampleDir = "../../../hack/sample/"
 )
 
 var f *test.Framework
