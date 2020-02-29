@@ -1,0 +1,18 @@
+---
+dist: bionic
+language: python
+os: linux
+python: "3.6"
+stages:
+  - pre-test
+services:
+  - docker
+jobs:
+  include:
+    - name: "Static checks"
+      stage: pre-test
+      script: ./scripts/ci/ci_run_all_static_checks.sh
+      env: >-
+        PYTHON_VERSION=3.6
+        AIRFLOW_MOUNT_SOURCE_DIR_FOR_STATIC_CHECKS="true"
+        SKIP=pylint-tests
