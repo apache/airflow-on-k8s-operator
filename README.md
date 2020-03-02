@@ -3,7 +3,7 @@
 
 ## Community
 
-* Join our [Slack channel](https://kubernetes.slack.com/messages/CC1UAMYSV).
+* Join [Airflow Slack](https://apache-airflow-slack.herokuapp.com) and the dedicated #sig-kubernetes channel.
 
 ## Project Status
 
