@@ -41,15 +41,16 @@ spec:
     spec:
       containers:
         - command:
-            - /manager
+          - /manager
           args:
-            - --enable-leader-election
+          - --enable-leader-election
           image: controller:latest
           name: manager
+          imagePullPolicy: Always
           resources:
             limits:
               cpu: 100m
-              memory: 30Mi
+              memory: 300Mi
             requests:
               cpu: 100m
               memory: 20Mi
