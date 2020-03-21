@@ -13,12 +13,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+---
 apiVersion: airflow.apache.org/v1alpha1
 kind: AirflowBase
 metadata:
   name: pc-base
 spec:
   postgres:
-    operator: False
+    operator: false
   storage:
     version: ""

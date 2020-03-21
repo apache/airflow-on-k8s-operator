@@ -13,15 +13,16 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+---
 apiVersion: airflow.apache.org/v1alpha1
 kind: AirflowBase
 metadata:
   name: cc-base
 spec:
   sqlproxy:
-          project: kubeflow-193622
-          region: us-central1
-          instance: airflow-test1
-          type: postgres
+    project: kubeflow-193622
+    region: us-central1
+    instance: airflow-test1
+    type: postgres
   storage:
     version: ""

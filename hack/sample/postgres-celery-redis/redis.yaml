@@ -13,6 +13,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+---
 apiVersion: v1
 kind: Service
 metadata:
@@ -44,14 +45,14 @@ spec:
           image: redis:4.0
           imagePullPolicy: Always
           args:
-          - --requirepass
-          - $(REDIS_PASSWORD)
+            - --requirepass
+            - $(REDIS_PASSWORD)
           env:
-          - name: REDIS_PASSWORD
-            valueFrom:
-              secretKeyRef:
-                key: password
-                name: pc-cluster-redis
+            - name: REDIS_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  key: password
+                  name: pc-cluster-redis
           ports:
             - containerPort: 6379
               name: redis

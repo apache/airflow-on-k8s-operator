@@ -13,27 +13,32 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+---
 repos:
   - repo: git://github.com/dnephin/pre-commit-golang
     rev: master
     hooks:
       - id: go-fmt
         exclude: ^vendor/.*$
+  - repo: local
+    hooks:
+      - id: yamllint
+        name: Check yaml files with yamllint
+        entry: yamllint -c yamllint-config.yaml
+        language: python
+        additional_dependencies: ['yamllint']
+        types: [yaml]
+        exclude: ^templates/.*$|^vendor/.*$
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v2.5.0
     hooks:
       - id: check-merge-conflict
-      - id: debug-statements
       - id: detect-private-key
       - id: end-of-file-fixer
         exclude: ^vendor/.*$
       - id: mixed-line-ending
       - id: check-executables-have-shebangs
       - id: trailing-whitespace
-        exclude: ^vendor/.*$
-      - id: fix-encoding-pragma
-        args:
-          - --remove
         exclude: ^vendor/.*$
   - repo: https://github.com/Lucas-C/pre-commit-hooks
     rev: v1.1.7

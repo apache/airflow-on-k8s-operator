@@ -13,6 +13,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+---
 apiVersion: airflow.apache.org/v1alpha1
 kind: AirflowCluster
 metadata:
@@ -20,7 +21,7 @@ metadata:
 spec:
   executor: Celery
   redis:
-    operator: False
+    operator: false
   scheduler:
     version: "1.10.2"
   ui:

@@ -14,22 +14,23 @@
 # limitations under the License.
 
 # permissions to do viewer airflowclusters.
+---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
   name: airflowcluster-viewer-role
 rules:
-- apiGroups:
-  - airflow.apache.org
-  resources:
-  - airflowclusters
-  verbs:
-  - get
-  - list
-  - watch
-- apiGroups:
-  - airflow.apache.org
-  resources:
-  - airflowclusters/status
-  verbs:
-  - get
+  - apiGroups:
+      - airflow.apache.org
+    resources:
+      - airflowclusters
+    verbs:
+      - get
+      - list
+      - watch
+  - apiGroups:
+      - airflow.apache.org
+    resources:
+      - airflowclusters/status
+    verbs:
+      - get
