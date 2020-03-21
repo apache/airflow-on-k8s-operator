@@ -14,28 +14,29 @@
 # limitations under the License.
 
 # permissions to do edit airflowclusters.
+---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
   name: airflowcluster-editor-role
 rules:
-- apiGroups:
-  - airflow.apache.org
-  resources:
-  - airflowclusters
-  verbs:
-  - create
-  - delete
-  - get
-  - list
-  - patch
-  - update
-  - watch
-- apiGroups:
-  - airflow.apache.org
-  resources:
-  - airflowclusters/status
-  verbs:
-  - get
-  - patch
-  - update
+  - apiGroups:
+      - airflow.apache.org
+    resources:
+      - airflowclusters
+    verbs:
+      - create
+      - delete
+      - get
+      - list
+      - patch
+      - update
+      - watch
+  - apiGroups:
+      - airflow.apache.org
+    resources:
+      - airflowclusters/status
+    verbs:
+      - get
+      - patch
+      - update

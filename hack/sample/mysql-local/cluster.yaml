@@ -13,6 +13,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+---
 apiVersion: airflow.apache.org/v1alpha1
 kind: AirflowCluster
 metadata:
@@ -27,7 +28,7 @@ spec:
   airflowbase:
     name: mc-base
     #  config:
-    #airflow:
+    # airflow:
     #  AIRFLOW__SCHEDULER__DAG_DIR_LIST_INTERVAL: "100"
     #  AIRFLOW__WEBSERVER__AUTHENTICATE: "True"
     #  AIRFLOW__WEBSERVER__AUTH_BACKEND: "airflow.contrib.auth.backends.password_auth"
