@@ -4,8 +4,8 @@ In case you want to build the Airflow Operator from the source code, e.g., to te
 
 ## Cloning the repo:
 ```bash
-$ mkdir -p $GOPATH/src/k8s.io
-$ cd $GOPATH/src/k8s.io
+$ mkdir -p $GOPATH/src/apache
+$ cd $GOPATH/src/apache
 $ git clone git@github.com:apache/airflow-on-k8s-operator.git
 ```
 
