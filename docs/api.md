@@ -1,14 +1,31 @@
+<!--
+ Licensed to the Apache Software Foundation (ASF) under one or more
+ contributor license agreements.  See the NOTICE file distributed with
+ this work for additional information regarding copyright ownership.
+ The ASF licenses this file to You under the Apache License, Version 2.0
+ (the "License"); you may not use this file except in compliance with
+ the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+ -->
+
 # Airflow Operator Custom Resource (API)
 The Airflow Operator uses these [CustomResourceDefinitions](https://kubernetes.io/docs/concepts/api-n/custom-resources/):
 
-`AirflowBase` includes MySQL, UI, NFS(DagStore).  
-`AirflowCluster` includes Airflow Scheduler, Workers, Redis.  
+`AirflowBase` includes MySQL, UI, NFS(DagStore).
+`AirflowCluster` includes Airflow Scheduler, Workers, Redis.
 
 Multiple `AirflowCluster` could use the same `AirflowBase`. The way custom resources are defined allows multi-single-tenant (multiple single users) usecases, where users use different airflow plugins (opeartors, packages etc) in their set
 up. This improves cluster utilization and provide multiple users (in same trust domain) with some isolation.
 
 ## AirflowBase API
- 
+
 | **Field** | **json field**| **Type** | **Info** |
 | --- | --- | --- | --- |
 | Spec | `spec` | [AirflowBaseSpec](#AirflowBaseSpec) | The specfication for Airflow Base cusotm resource |
@@ -41,14 +58,14 @@ up. This improves cluster utilization and provide multiple users (in same trust 
 | Options | map[string]string | ` ` | command line options for mysql |
 
 
-#### MySQLBackup 
+#### MySQLBackup
 | **Field** | **Type** | **json field** | **Info** |
 | --- | --- | --- | --- |
 | Schedule | string | `schedule` | Schedule is the cron string used to schedule backup|
 | Storage | StorageSpec | `storage` | Storage has the s3 compatible storage spec|
 
 
-##### StorageSpec 
+##### StorageSpec
 | **Field** | **Type** | **json field** | **Info** |
 | --- | --- | --- | --- |
 | StorageProvider | string | `storageprovider` | Provider is the storage type used for backup and restore e.g. s3, oci-s3-compat, aws-s3, gce-s3, etc |
@@ -215,7 +232,7 @@ up. This improves cluster utilization and provide multiple users (in same trust 
 | LastError | string | `lasterror` | LastError|
 | Status | string | `status` | Status|
 
-#### StsStatus 
+#### StsStatus
 | **Field** | **Type** | **json field** | **Info** |
 | --- | --- | --- | --- |
 | Link | string | `link` | Link to sts|

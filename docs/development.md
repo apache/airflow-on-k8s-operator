@@ -1,3 +1,20 @@
+<!--
+ Licensed to the Apache Software Foundation (ASF) under one or more
+ contributor license agreements.  See the NOTICE file distributed with
+ this work for additional information regarding copyright ownership.
+ The ASF licenses this file to You under the Apache License, Version 2.0
+ (the "License"); you may not use this file except in compliance with
+ the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+ -->
+
 # Development
 You should have kubeconfig setup to point to your cluster.
 In case you want to build the Airflow Operator from the source code, e.g., to test a fix or a feature you write, you can do so following the instructions below.
@@ -17,7 +34,7 @@ make build
 # run locally
 make run
 ```
-## Building docker image 
+## Building docker image
 #### GCP
 When working with GCP ensure that gcloud is setup and gcr(container registry) is enabled for the current project.
 If not set IMG env to point to the desired registry image.
@@ -45,6 +62,19 @@ make docker-push NOTGCP=true
 make deploy
 ```
 
+## Static checks
+This project uses the [pre-commit](https://pre-commit.com) framework.
+The pre-commit hooks use  several external linters that need to be installed
+before pre-commit is run. Each of the checks installs its own environment,
+so you do not need to install  those.
+
+### Enabling Pre-commit Hooks
+
+To turn on pre-commit checks for ``commit`` operations in git, enter:
+
+```sh
+pre-commit install
+```
 
 ## Tests
 
