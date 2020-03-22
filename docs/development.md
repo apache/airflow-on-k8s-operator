@@ -17,7 +17,8 @@
 
 # Development
 You should have kubeconfig setup to point to your cluster.
-In case you want to build the Airflow Operator from the source code, e.g., to test a fix or a feature you write, you can do so following the instructions below.
+In case you want to build the Airflow Operator from the source code, e.g.,
+to test a fix or a feature you write, you can do so following the instructions below.
 
 ## Cloning the repo:
 ```bash
@@ -25,6 +26,22 @@ $ mkdir -p $GOPATH/src/apache
 $ cd $GOPATH/src/apache
 $ git clone git@github.com:apache/airflow-on-k8s-operator.git
 ```
+
+## Install kubebuilder
+You have to install the [kubebuilder](https://book.kubebuilder.io/quick-start.html):
+```shell script
+os=$(go env GOOS)
+arch=$(go env GOARCH)
+
+# download kubebuilder and extract it to tmp
+curl -L https://go.kubebuilder.io/dl/2.3.0/${os}/${arch} | tar -xz -C /tmp/
+
+# move to a long-term location and put it on your path
+# (you'll need to set the KUBEBUILDER_ASSETS env var if you put it somewhere else)
+sudo mv /tmp/kubebuilder_2.3.0_${os}_${arch} /usr/local/kubebuilder
+export PATH=$PATH:/usr/local/kubebuilder/bin
+```
+
 
 ## Building and running locally:
 ```bash
@@ -34,6 +51,7 @@ make build
 # run locally
 make run
 ```
+
 ## Building docker image
 #### GCP
 When working with GCP ensure that gcloud is setup and gcr(container registry) is enabled for the current project.
