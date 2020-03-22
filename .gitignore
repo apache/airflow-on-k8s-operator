@@ -2,4 +2,4 @@ bin/
 cover.out
 pkg/controller/airflowbase/templates
 pkg/controller/airflowcluster/templates
-.idea/.*
+.idea/
