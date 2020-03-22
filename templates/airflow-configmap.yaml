@@ -1,19 +1,19 @@
-# Licensed to the Apache Software Foundation (ASF) under one
-# or more contributor license agreements. See the NOTICE file
-# distributed with this work for additional information
-# regarding copyright ownership. The ASF licenses this file
-# to you under the Apache License, Version 2.0 (the
-# "License"); you may not use this file except in compliance
-# with the License. You may obtain a copy of the License at
+# Licensed to the Apache Software Foundation (ASF) under one or more
+# contributor license agreements.  See the NOTICE file distributed with
+# this work for additional information regarding copyright ownership.
+# The ASF licenses this file to You under the Apache License, Version 2.0
+# (the "License"); you may not use this file except in compliance with
+# the License.  You may obtain a copy of the License at
 #
-#   http://www.apache.org/licenses/LICENSE-2.0
+#    http://www.apache.org/licenses/LICENSE-2.0
 #
-# Unless required by applicable law or agreed to in writing,
-# software distributed under the License is distributed on an
-# "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-# KIND, either express or implied. See the License for the
-# specific language governing permissions and limitations
-# under the License.
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+---
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -186,7 +186,7 @@ data:
     worker_container_tag = {{.Cluster.Spec.Worker.Version}}
     worker_container_image_pull_policy = IfNotPresent
     delete_worker_pods = True
-    worker_service_account_name = 
+    worker_service_account_name =
     git_repo = {{.Cluster.Spec.DAGs.Git.Repo}}
     git_branch = {{.Cluster.Spec.DAGs.Git.Branch}}
     git_subpath = {{.Cluster.Spec.DAGs.DagSubdir}}
@@ -196,7 +196,7 @@ data:
     git_password =
     in_cluster = True
     namespace = {{.Namespace}}
-    gcp_service_account_keys = 
+    gcp_service_account_keys =
 
     # For cloning DAGs from git repositories into volumes: https://github.com/kubernetes/git-sync
     git_sync_container_repository = gcr.io/google-containers/git-sync-amd64

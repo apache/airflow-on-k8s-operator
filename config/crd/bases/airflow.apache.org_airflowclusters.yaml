@@ -1,3 +1,17 @@
+# Licensed to the Apache Software Foundation (ASF) under one or more
+# contributor license agreements.  See the NOTICE file distributed with
+# this work for additional information regarding copyright ownership.
+# The ASF licenses this file to You under the Apache License, Version 2.0
+# (the "License"); you may not use this file except in compliance with
+# the License.  You may obtain a copy of the License at
+#
+#    http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
 
 ---
 apiVersion: apiextensions.k8s.io/v1beta1
@@ -94,8 +108,8 @@ spec:
                                         type: string
                                       type: array
                                   required:
-                                  - key
-                                  - operator
+                                    - key
+                                    - operator
                                   type: object
                                 type: array
                               matchFields:
@@ -128,8 +142,8 @@ spec:
                                         type: string
                                       type: array
                                   required:
-                                  - key
-                                  - operator
+                                    - key
+                                    - operator
                                   type: object
                                 type: array
                             type: object
@@ -139,8 +153,8 @@ spec:
                             format: int32
                             type: integer
                         required:
-                        - preference
-                        - weight
+                          - preference
+                          - weight
                         type: object
                       type: array
                     requiredDuringSchedulingIgnoredDuringExecution:
@@ -190,8 +204,8 @@ spec:
                                         type: string
                                       type: array
                                   required:
-                                  - key
-                                  - operator
+                                    - key
+                                    - operator
                                   type: object
                                 type: array
                               matchFields:
@@ -224,14 +238,14 @@ spec:
                                         type: string
                                       type: array
                                   required:
-                                  - key
-                                  - operator
+                                    - key
+                                    - operator
                                   type: object
                                 type: array
                             type: object
                           type: array
                       required:
-                      - nodeSelectorTerms
+                        - nodeSelectorTerms
                       type: object
                   type: object
                 podAffinity:
@@ -290,8 +304,8 @@ spec:
                                             type: string
                                           type: array
                                       required:
-                                      - key
-                                      - operator
+                                        - key
+                                        - operator
                                       type: object
                                     type: array
                                   matchLabels:
@@ -322,7 +336,7 @@ spec:
                                   is running. Empty topologyKey is not allowed.
                                 type: string
                             required:
-                            - topologyKey
+                              - topologyKey
                             type: object
                           weight:
                             description: weight associated with matching the corresponding
@@ -330,8 +344,8 @@ spec:
                             format: int32
                             type: integer
                         required:
-                        - podAffinityTerm
-                        - weight
+                          - podAffinityTerm
+                          - weight
                         type: object
                       type: array
                     requiredDuringSchedulingIgnoredDuringExecution:
@@ -385,8 +399,8 @@ spec:
                                         type: string
                                       type: array
                                   required:
-                                  - key
-                                  - operator
+                                    - key
+                                    - operator
                                   type: object
                                 type: array
                               matchLabels:
@@ -416,7 +430,7 @@ spec:
                               topologyKey is not allowed.
                             type: string
                         required:
-                        - topologyKey
+                          - topologyKey
                         type: object
                       type: array
                   type: object
@@ -478,8 +492,8 @@ spec:
                                             type: string
                                           type: array
                                       required:
-                                      - key
-                                      - operator
+                                        - key
+                                        - operator
                                       type: object
                                     type: array
                                   matchLabels:
@@ -510,7 +524,7 @@ spec:
                                   is running. Empty topologyKey is not allowed.
                                 type: string
                             required:
-                            - topologyKey
+                              - topologyKey
                             type: object
                           weight:
                             description: weight associated with matching the corresponding
@@ -518,8 +532,8 @@ spec:
                             format: int32
                             type: integer
                         required:
-                        - podAffinityTerm
-                        - weight
+                          - podAffinityTerm
+                          - weight
                         type: object
                       type: array
                     requiredDuringSchedulingIgnoredDuringExecution:
@@ -573,8 +587,8 @@ spec:
                                         type: string
                                       type: array
                                   required:
-                                  - key
-                                  - operator
+                                    - key
+                                    - operator
                                   type: object
                                 type: array
                               matchLabels:
@@ -604,7 +618,7 @@ spec:
                               topologyKey is not allowed.
                             type: string
                         required:
-                        - topologyKey
+                          - topologyKey
                         type: object
                       type: array
                   type: object
@@ -658,8 +672,7 @@ spec:
                       description: Bucket describes the GCS bucket
                       type: string
                     once:
-                      description: Once syncs initially and quits (use init container
-                        instead of sidecar)
+                      description: Once syncs initially and quits (use init container instead of sidecar)
                       type: boolean
                   type: object
                 git:
@@ -670,8 +683,7 @@ spec:
                       description: Branch describes the branch name to be synced
                       type: string
                     cred:
-                      description: Reference to git credentials (user, password, ssh
-                        etc)
+                      description: Reference to git credentials (user, password, ssh etc)
                       properties:
                         name:
                           description: 'Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
@@ -692,7 +704,7 @@ spec:
                       description: User for git access
                       type: string
                   required:
-                  - repo
+                    - repo
                   type: object
                 nfspv:
                   description: NfsPVSpec
@@ -747,8 +759,8 @@ spec:
                               description: Name is the name of resource being referenced
                               type: string
                           required:
-                          - kind
-                          - name
+                            - kind
+                            - name
                           type: object
                         resources:
                           description: 'Resources represents the minimum resources
@@ -802,8 +814,8 @@ spec:
                                       type: string
                                     type: array
                                 required:
-                                - key
-                                - operator
+                                  - key
+                                  - operator
                                 type: object
                               type: array
                             matchLabels:
@@ -881,8 +893,8 @@ spec:
                                   a valid value of PersistentVolumeClaimCondition.Type
                                 type: string
                             required:
-                            - status
-                            - type
+                              - status
+                              - type
                             type: object
                           type: array
                         phase:
@@ -916,7 +928,7 @@ spec:
                         restore e.g. s3, oci-s3-compat, aws-s3, gce-s3, etc.
                       type: string
                   required:
-                  - storageprovider
+                    - storageprovider
                   type: object
                 subdir:
                   description: DagSubdir is the directory under source where the dags
@@ -1035,8 +1047,8 @@ spec:
                                 format: int32
                                 type: integer
                             required:
-                            - currenthealthy
-                            - desiredhealthy
+                              - currenthealthy
+                              - desiredhealthy
                             type: object
                           status:
                             description: 'Status. Values: InProgress, Ready, Unknown'
@@ -1066,10 +1078,10 @@ spec:
                                 format: int32
                                 type: integer
                             required:
-                            - currentcount
-                            - progress
-                            - readycount
-                            - replicas
+                              - currentcount
+                              - progress
+                              - readycount
+                              - replicas
                             type: object
                         type: object
                       type: array
@@ -1103,8 +1115,8 @@ spec:
                             description: Type of condition.
                             type: string
                         required:
-                        - status
-                        - type
+                          - status
+                          - type
                         type: object
                       type: array
                     createTime:
@@ -1143,8 +1155,8 @@ spec:
                   description: 'Tier: Required. The service tier of the instance.'
                   type: string
               required:
-              - project
-              - region
+                - project
+                - region
               type: object
             nodeSelector:
               additionalProperties:
@@ -1252,8 +1264,8 @@ spec:
                               description: Name is the name of resource being referenced
                               type: string
                           required:
-                          - kind
-                          - name
+                            - kind
+                            - name
                           type: object
                         resources:
                           description: 'Resources represents the minimum resources
@@ -1307,8 +1319,8 @@ spec:
                                       type: string
                                     type: array
                                 required:
-                                - key
-                                - operator
+                                  - key
+                                  - operator
                                 type: object
                               type: array
                             matchLabels:
@@ -1386,8 +1398,8 @@ spec:
                                   a valid value of PersistentVolumeClaimCondition.Type
                                 type: string
                             required:
-                            - status
-                            - type
+                              - status
+                              - type
                             type: object
                           type: array
                         phase:
@@ -1531,8 +1543,8 @@ spec:
                         format: int32
                         type: integer
                     required:
-                    - currenthealthy
-                    - desiredhealthy
+                      - currenthealthy
+                      - desiredhealthy
                     type: object
                   status:
                     description: 'Status. Values: InProgress, Ready, Unknown'
@@ -1560,10 +1572,10 @@ spec:
                         format: int32
                         type: integer
                     required:
-                    - currentcount
-                    - progress
-                    - readycount
-                    - replicas
+                      - currentcount
+                      - progress
+                      - readycount
+                      - replicas
                     type: object
                 type: object
               type: array
@@ -1596,8 +1608,8 @@ spec:
                     description: Type of condition.
                     type: string
                 required:
-                - status
-                - type
+                  - status
+                  - type
                 type: object
               type: array
             observedGeneration:
@@ -1610,9 +1622,9 @@ spec:
       type: object
   version: v1alpha1
   versions:
-  - name: v1alpha1
-    served: true
-    storage: true
+    - name: v1alpha1
+      served: true
+      storage: true
 status:
   acceptedNames:
     kind: ""

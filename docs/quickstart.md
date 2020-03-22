@@ -1,3 +1,20 @@
+<!--
+ Licensed to the Apache Software Foundation (ASF) under one or more
+ contributor license agreements.  See the NOTICE file distributed with
+ this work for additional information regarding copyright ownership.
+ The ASF licenses this file to You under the Apache License, Version 2.0
+ (the "License"); you may not use this file except in compliance with
+ the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+ -->
+
 # Quick Start
 
 ## Deploy from GCP Marketplace
@@ -10,7 +27,7 @@ Refer to the [Development Guide](https://github.com/apache/airflow-on-k8s-operat
 Ensure kubeconfig points to your cluster.
 Due to a [known issue](https://cloud.google.com/kubernetes-engine/docs/how-to/role-based-access-control#defining_permissions_in_a_role) in GKE, you will need to first grant yourself cluster-admin privileges before you can create custom roles and role bindings on a GKE cluster versioned 1.6 and up.
 ```bash
-# grant admin 
+# grant admin
 $ kubectl create clusterrolebinding cluster-admin-binding --clusterrole cluster-admin --user your-account-email
 ```
 
@@ -27,7 +44,7 @@ $ make install
 ```bash
 # First we need to build the docker image for the controller
 # Set this to the name of the docker registry and image you want to use
-$ export IMG=gcr.io/myproject/airflow-controller:latest 
+$ export IMG=gcr.io/myproject/airflow-controller:latest
 
 # Build and push
 $ make docker-push
@@ -57,7 +74,7 @@ The `hack/sample/` directory contains sample Airflow CRs
 ```bash
 # deploy base components first
 $ kubectl apply -f hack/sample/mysql-celery/base.yaml
-# after 30-60s deploy cluster components 
+# after 30-60s deploy cluster components
 # using celery + git as DAG source
 $ kubectl apply -f hack/sample/mysql-celery/cluster.yaml
 # port forward to access the UI
@@ -65,14 +82,14 @@ $ kubectl port-forward mc-cluster-airflowui-0 8080:8080
 # port forward to access the Flower
 $ kubectl port-forward mc-cluster-flower-0 5555:5555
 # get status of the CRs
-$ kubectl get airflowbase/mc-base -o yaml 
-$ kubectl get airflowcluster/mc-cluster -o yaml 
+$ kubectl get airflowbase/mc-base -o yaml
+$ kubectl get airflowcluster/mc-cluster -o yaml
 
 # Against the same mc-base, we could deploy another cluster.
 # celery + gcs as DAG source (you need to update to point to your gcs bucket)
 $ kubectl apply -f hack/sample/mysql-celery-gcs/cluster.yaml
 $ kubectl port-forward mcg-cluster-airflowui-0 8081:8080
-$ kubectl get airflowcluster/mcg-cluster -o yaml 
+$ kubectl get airflowcluster/mcg-cluster -o yaml
 ```
 
 #### Deploy Postgres based samples
@@ -114,8 +131,8 @@ $ kubectl apply -f hack/sample/cloudsql-celery/cluster.yaml
 # port forward to access the UI (port 8082)
 $ kubectl port-forward cc-cluster-airflowui-0 8082:8080
 # get status of the CRs
-$ kubectl get airflowbase/cc-base -o yaml 
-$ kubectl get airflowcluster/cc-cluster -o yaml 
+$ kubectl get airflowbase/cc-base -o yaml
+$ kubectl get airflowcluster/cc-cluster -o yaml
 ```
 
 ## Next steps
