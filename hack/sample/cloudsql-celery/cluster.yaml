@@ -36,7 +36,7 @@ spec:
   dags:
     subdir: "airflow/example_dags/"
     git:
-      repo: "https://github.com/apache/incubator-airflow/"
+      repo: "https://github.com/apache/airflow/"
       once: true
   airflowbase:
     name: cc-base
