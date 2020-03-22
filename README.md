@@ -16,7 +16,9 @@
  -->
 
 # Airflow On K8S Operator
+![Airflow k8s operator](https://github.com/apache/airflow-on-k8s-operator/workflows/Airflow%20k8s%20operator/badge.svg?branch=master)
 [![Go Report Card](https://goreportcard.com/badge/github.com/apache/airflow-on-k8s-operator)](https://goreportcard.com/report/github.com/apache/airflow-on-k8s-operator)
+
 
 ## Community
 
