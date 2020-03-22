@@ -19,6 +19,7 @@ repos:
     rev: master
     hooks:
       - id: go-fmt
+        name: Run Gofmt
         exclude: ^vendor/.*$
   - repo: local
     hooks:
