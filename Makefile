@@ -33,14 +33,14 @@ IMG ?= controller:latest
 # Produce CRDs that work back to Kubernetes 1.11 (no version conversion)
 CRD_OPTIONS ?= "crd:trivialVersions=true"
 
-all: test manager
+all: test build
 
 # Run tests
-test: generate fmt vet manifests
+test: generate manifests
 	go test ./controllers/... -coverprofile cover.out
 
 # Build manager binary
-manager: generate fmt vet
+build: generate fmt vet
 	go build -o bin/manager main.go
 
 # Run against the configured Kubernetes cluster in ~/.kube/config
