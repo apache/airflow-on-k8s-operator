@@ -46,7 +46,7 @@ repos:
     hooks:
       - id: insert-license
         name: Add license for all yaml files
-        exclude: ^vendor/.*$
+        exclude: ^vendor/.*$|^config/crd/bases/.*$|^config/rbac/role.yaml$|^config/webhook/manifests.yaml$
         types: [yaml]
         args:
           - --comment-style
@@ -67,7 +67,7 @@ repos:
       - id: insert-license
         name: Add license for all go files
         files: \.go$
-        exclude: ^vendor/.*$|^zz_generated.*$
+        exclude: ^vendor/.*$|api/v1alpha1/zz_generated.deepcopy.go
         args:
           - --comment-style
           - "//"

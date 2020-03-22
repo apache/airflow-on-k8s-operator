@@ -38,7 +38,16 @@ jobs:
       - uses: pre-commit/action@v1.0.1
 
   build:
-    name: Build
+    name: Build docker
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v2
+      - name: Build
+        run: docker build . -t "ci"
+
+  tests:
+    name: Tests
     runs-on: ubuntu-latest
     steps:
       - name: Set up Go 1.13
@@ -46,9 +55,14 @@ jobs:
         with:
           go-version: 1.13
         id: go
-      - name: Check out code into the Go module directory
+      - name: Check out code
         uses: actions/checkout@v2
-      - name: Get dependencies
-        run: go mod download
-      - name: Build
-        run: go build -v .
+      - name: Install kubebuilder
+        run: |
+          os=$(go env GOOS) && \
+          arch=$(go env GOARCH) && \
+          curl -L https://go.kubebuilder.io/dl/2.3.0/$os/$arch | tar -xz -C /tmp/ && \
+          sudo mv /tmp/kubebuilder_2.3.0_${os}_${arch} /usr/local/kubebuilder && \
+          export PATH=$PATH:/usr/local/kubebuilder/bin
+      - name: Run test
+        run: make test
