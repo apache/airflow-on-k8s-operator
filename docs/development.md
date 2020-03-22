@@ -27,7 +27,7 @@ $ cd $GOPATH/src/apache
 $ git clone git@github.com:apache/airflow-on-k8s-operator.git
 ```
 
-## Install kubebuilder
+## Install prerequisites
 You have to install the [kubebuilder](https://book.kubebuilder.io/quick-start.html):
 ```shell script
 os=$(go env GOOS)
@@ -41,6 +41,12 @@ curl -L https://go.kubebuilder.io/dl/2.3.0/${os}/${arch} | tar -xz -C /tmp/
 sudo mv /tmp/kubebuilder_2.3.0_${os}_${arch} /usr/local/kubebuilder
 export PATH=$PATH:/usr/local/kubebuilder/bin
 ```
+
+Also the [kustomize](https://github.com/kubernetes-sigs/kustomize) is required. On MacOS:
+```shell script
+brew install kustomize
+```
+For other installation options check https://github.com/kubernetes-sigs/kustomize/blob/master/docs/INSTALL.md
 
 
 ## Building and running locally:
