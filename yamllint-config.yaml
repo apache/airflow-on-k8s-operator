@@ -17,6 +17,11 @@
 ---
 extends: default
 
+ignore: |
+  /config/crd/bases/*
+  /config/rbac/role.yaml
+  /config/webhook/manifests.yaml
+
 rules:
   line-length:
     max: 200
