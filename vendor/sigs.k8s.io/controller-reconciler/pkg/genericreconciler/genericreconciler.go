@@ -33,6 +33,7 @@ import (
 	ctrl "sigs.k8s.io/controller-runtime"
 	"sigs.k8s.io/controller-runtime/pkg/manager"
 	"sigs.k8s.io/controller-runtime/pkg/reconcile"
+	"strings"
 	"time"
 )
 
@@ -214,10 +215,15 @@ func (gr *Reconciler) finalizeUsing(h Handler, resource runtime.Object, crname s
 }
 
 func (gr *Reconciler) ownerRef(resource runtime.Object) *metav1.OwnerReference {
+	kind_slice := strings.Split(reflect.TypeOf(gr.resource).String(), ".")
+	kind := kind_slice[0]
+	if len(kind_slice) > 1 {
+		kind = kind_slice[1]
+	}
 	return metav1.NewControllerRef(resource.(metav1.Object), schema.GroupVersionKind{
 		Group:   gr.gv.Group,
 		Version: gr.gv.Version,
-		Kind:    reflect.TypeOf(gr.resource).String(),
+		Kind:    kind,
 	})
 }
 

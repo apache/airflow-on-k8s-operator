@@ -6,7 +6,9 @@ metadata:
   creationTimestamp: null
   name: manager-role
 rules:
-- resources:
+- apiGroups:
+  - ""
+  resources:
   - configmaps
   verbs:
   - create
@@ -16,7 +18,9 @@ rules:
   - patch
   - update
   - watch
-- resources:
+- apiGroups:
+  - ""
+  resources:
   - secrets
   verbs:
   - create
@@ -26,7 +30,9 @@ rules:
   - patch
   - update
   - watch
-- resources:
+- apiGroups:
+  - ""
+  resources:
   - serviceaccounts
   verbs:
   - create
@@ -36,7 +42,9 @@ rules:
   - patch
   - update
   - watch
-- resources:
+- apiGroups:
+  - ""
+  resources:
   - services
   verbs:
   - create
@@ -50,6 +58,7 @@ rules:
   - airflow.apache.org
   resources:
   - airflowbases
+  - airflowbases/finalizers
   verbs:
   - create
   - delete
@@ -70,6 +79,7 @@ rules:
   - airflow.apache.org
   resources:
   - airflowclusters
+  - airflowclusters/finalizers
   verbs:
   - create
   - delete
