@@ -13,8 +13,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# Adds namespace to all resources.
 ---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+# Adds namespace to all resources.
 namespace: airflow-on-k8s-operator-system
 
 # Value of this field is prepended to the
@@ -28,7 +31,7 @@ namePrefix: airflow-on-k8s-operator-
 # commonLabels:
 #  someName: someValue
 
-bases:
+resources:
   - ../crd
   - ../rbac
   - ../manager
