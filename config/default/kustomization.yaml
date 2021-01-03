@@ -31,7 +31,7 @@ namePrefix: airflow-on-k8s-operator-
 # commonLabels:
 #  someName: someValue
 
-bases:
+resources:
   - ../crd
   - ../rbac
   - ../manager
