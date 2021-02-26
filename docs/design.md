@@ -33,7 +33,7 @@ In case of some stateful applications, the declarative models provided by kubern
 The goal is to ensure that Kubernetes works well as a substrate for deploying Airflow.
 # Airflow Operator Custom Resource (API)
 The Airflow operator API is implemented by extending the k8s API with Custom Resources Definitions (CRDs) that declaratively describes the intent. Custom resources are serializable as json and are stored in the API Server. The Airflow controller watches these Custom Resources and take actions to move the Airflow cluster to the desired state. All CRDs inherit the contents of ObjectMeta and TypeMeta that are common to k8s resources.
-To improve cluster utilization and provide multiple users (in same trust domain) with some isolation, we are splitting the Airflow components into `AirflowBase` (common) and `AirflowCluster` (per user). `AirflowBase` includes MySQL, UI, NFS(DagStore). `AirflowCluster` includes Airflow Scheduler, Workers, Redis. This allows use cases where different users use different airflow plugins (opeartors, packages etc) in their setup.
+To improve cluster utilization and provide multiple users (in same trust domain) with some isolation, we are splitting the Airflow components into `AirflowBase` (common) and `AirflowCluster` (per user). `AirflowBase` includes MySQL, UI, NFS(DagStore). `AirflowCluster` includes Airflow Scheduler, Workers, Redis. This allows use cases where different users use different airflow plugins (operators, packages etc) in their setup.
 
 The [API Design](https://github.com/apache/airflow-on-k8s-operator/blob/master/docs/api.md) details the `AirflowBase` and `AirflowCluster` Custom Resource fields.
 
@@ -57,7 +57,7 @@ MySQL, SQLProxy, NFS cluster are all deployed as stateful sets. StatefulSet crea
 The AirflowUI and NFS cluster are exposed via a service for use by the users and AirflowClusters.
 
 #### Persistent Volumes and claims
-NFS cluster and MySQL use PVCs for data durability in the face of temporary compute degradation. Persistent Volume(PV) matching the Persistent Volume Claim(PVC)  is used when pods are created. If a matching PV is not found, dynamic provisioning is used to provision a PV and attached to the PVC created by the StatefulSets. For an elastic scalable service, dynamic provisioning is prefered.
+NFS cluster and MySQL use PVCs for data durability in the face of temporary compute degradation. Persistent Volume(PV) matching the Persistent Volume Claim(PVC)  is used when pods are created. If a matching PV is not found, dynamic provisioning is used to provision a PV and attached to the PVC created by the StatefulSets. For an elastic scalable service, dynamic provisioning is preferred.
 
 #### Pods
 StatefulSet creates Pods. For NFS and MySQL, Persistent Volumes are attached to the Pod based on the PVC in the StatefulSet spec.  The AirflowUI and SQL-Proxy pods are simple single purpose pods and do not typically need data persistence. In case of MySQL controller, the details of MySQL pods can be found here.
@@ -99,7 +99,7 @@ Airflow Pods have the airflow container (scheduler,worker) and DAG Sidecar conta
 The airflow operator logs to the standard output and error file streams which is recommended for logging in containerized workloads. The K8s cluster level logging captures these logs in a central place. For airflow components it is recommended to log to the standard file streams as well.
 
 ## Metrics
-The controller uses `pbweb/airflow-prometheus-exporter:latest` as a side-car to expose prometheus metircs for Airflow on port `9112`.
+The controller uses `pbweb/airflow-prometheus-exporter:latest` as a side-car to expose prometheus metrics for Airflow on port `9112`.
 
 # Failure Modes and Remediation
 Failures modes of the AirflowCluster, AirflowBase and Airflow controller are considered in addition to general failure modes.

@@ -21,14 +21,14 @@ The Airflow Operator uses these [CustomResourceDefinitions](https://kubernetes.i
 `AirflowBase` includes MySQL, UI, NFS(DagStore).
 `AirflowCluster` includes Airflow Scheduler, Workers, Redis.
 
-Multiple `AirflowCluster` could use the same `AirflowBase`. The way custom resources are defined allows multi-single-tenant (multiple single users) usecases, where users use different airflow plugins (opeartors, packages etc) in their set
+Multiple `AirflowCluster` could use the same `AirflowBase`. The way custom resources are defined allows multi-single-tenant (multiple single users) usecases, where users use different airflow plugins (operators, packages etc) in their set
 up. This improves cluster utilization and provide multiple users (in same trust domain) with some isolation.
 
 ## AirflowBase API
 
 | **Field** | **json field**| **Type** | **Info** |
 | --- | --- | --- | --- |
-| Spec | `spec` | [AirflowBaseSpec](#AirflowBaseSpec) | The specfication for Airflow Base cusotm resource |
+| Spec | `spec` | [AirflowBaseSpec](#AirflowBaseSpec) | The specification for Airflow Base custom resource |
 | Status | `status` | AirflowBaseStatus | The status for the custom resource |
 
 #### AirflowBaseSpec
@@ -100,7 +100,7 @@ up. This improves cluster utilization and provide multiple users (in same trust 
 | Storage | ComponentStatus | `storage` | Storage is the status of the NFS component |
 | SQLProxy | ComponentStatus | `sqlproxy` | SQLProxy is the status of the SQLProxy component |
 | LastError | string | `lasterror` | LastError |
-| Status | string | `status`| 	Reaedy or Pending |
+| Status | string | `status`| 	Ready or Pending |
 
 ##  AirflowCluster
 
