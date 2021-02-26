@@ -234,7 +234,7 @@ func (s *WorkerSpec) validate(fp *field.Path) field.ErrorList {
 	return field.ErrorList{}
 }
 
-//GCSSpec defines the atributed needed to sync from a git repo
+//GCSSpec defines the attributed needed to sync from a git repo
 type GCSSpec struct {
 	// Bucket describes the GCS bucket
 	Bucket string `json:"bucket,omitempty"`
@@ -256,7 +256,7 @@ func (s *GCSSpec) validate(fp *field.Path) field.ErrorList {
 	return errs
 }
 
-//GitSpec defines the atributed needed to sync from a git repo
+//GitSpec defines the attributed needed to sync from a git repo
 type GitSpec struct {
 	// Repo describes the http/ssh uri for git repo
 	Repo string `json:"repo,"`

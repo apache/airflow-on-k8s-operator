@@ -46,7 +46,7 @@ func (a *Application) SetName(value string) *Application {
 	return a
 }
 
-// SetNamespace asets namespace
+// SetNamespace assets namespace
 func (a *Application) SetNamespace(value string) *Application {
 	a.ObjectMeta.Namespace = value
 	return a

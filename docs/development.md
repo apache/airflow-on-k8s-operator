@@ -110,7 +110,7 @@ make test
 ```
 
 ### Running e2e tests
-Before running e2e tests ensure that the desrired version is running on the cluster or locally.
+Before running e2e tests ensure that the desired version is running on the cluster or locally.
 
 ```bash
 # Start controller in cluster:

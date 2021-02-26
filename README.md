@@ -51,7 +51,7 @@ The Airflow Operator performs these jobs:
 * Updates the corresponding Kubernetes resources when the `AirflowBase` or `AirflowCluster` specification changes.
 * Restores managed Kubernetes resources that are deleted.
 * Supports creation of Airflow schedulers with different Executors
-* Supports sharing of the `AirflowBase` across mulitple `AirflowClusters`
+* Supports sharing of the `AirflowBase` across multiple `AirflowClusters`
 
 Checkout out the [Design](docs/design.md)
 

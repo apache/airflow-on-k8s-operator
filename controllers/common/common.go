@@ -109,10 +109,10 @@ type TemplateValue struct {
 func differs(expected reconciler.Object, observed reconciler.Object) bool {
 	switch expected.Obj.(*k8s.Object).Obj.(type) {
 	case *corev1.ServiceAccount:
-		// Dont update a SA
+		// Don't update a SA
 		return false
 	case *corev1.Secret:
-		// Dont update a secret
+		// Don't update a secret
 		return false
 	}
 	return true
